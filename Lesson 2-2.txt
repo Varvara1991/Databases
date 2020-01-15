@@ -44,9 +44,3 @@ mysql> SHOW TABLES;
 1 row in set (0.00 sec)
 
 mysql>
-
-mysql> exit
-Bye
-
-C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p sample < example.sql
-Enter password: **************
