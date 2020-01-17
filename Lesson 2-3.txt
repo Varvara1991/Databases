@@ -1,0 +1,89 @@
+Microsoft Windows [Version 10.0.18362.535]
+(c) Корпорация Майкрософт (Microsoft Corporation), 2019. Все права защищены.
+
+C:\WINDOWS\system32> cd C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin> mysqldump -u root -p example > example.sql
+Enter password: **************
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>DIR
+ Том в устройстве C не имеет метки.
+ Серийный номер тома: BA1A-4BD8
+
+ Содержимое папки C:\Program Files\MySQL\MySQL Server 8.0\bin
+
+15.01.2020  13:32    <DIR>          .
+15.01.2020  13:32    <DIR>          ..
+15.01.2020  13:47             1 950 example.sql
+20.09.2019  14:48           707 072 harness-library.dll
+20.09.2019  07:23         6 394 192 ibd2sdi.exe
+20.09.2019  07:23         6 362 456 innochecksum.exe
+11.09.2019  11:36         3 274 752 libcrypto-1_1-x64.dll
+16.08.2019  10:04         1 839 616 libmecab.dll
+20.09.2019  14:29         8 387 584 libprotobuf-debug.dll
+20.09.2019  14:28         1 163 264 libprotobuf-lite-debug.dll
+20.09.2019  14:47           427 520 libprotobuf-lite.dll
+20.09.2019  14:47           613 894 libprotobuf-lite.lib
+20.09.2019  14:48         2 899 968 libprotobuf.dll
+20.09.2019  14:48         3 586 510 libprotobuf.lib
+11.09.2019  11:36           654 848 libssl-1_1-x64.dll
+20.09.2019  07:23         6 253 920 lz4_decompress.exe
+20.09.2019  07:23         6 649 176 myisamchk.exe
+20.09.2019  07:23         6 481 752 myisamlog.exe
+20.09.2019  07:23         6 547 800 myisampack.exe
+20.09.2019  07:23         6 525 280 myisam_ftdump.exe
+20.09.2019  07:23         6 828 368 mysql.exe
+20.09.2019  07:23         6 729 560 mysqladmin.exe
+20.09.2019  07:23         7 032 152 mysqlbinlog.exe
+20.09.2019  07:23         6 738 776 mysqlcheck.exe
+20.09.2019  07:23        48 784 720 mysqld.exe
+20.09.2019  07:23         6 798 680 mysqldump.exe
+20.09.2019  14:28             7 902 mysqldumpslow.pl
+20.09.2019  14:28            28 713 mysqld_multi.pl
+20.09.2019  07:23         6 720 856 mysqlimport.exe
+20.09.2019  07:23         7 198 552 mysqlpump.exe
+20.09.2019  07:23         7 264 600 mysqlrouter.exe
+20.09.2019  14:47           261 632 mysqlrouter_http.dll
+20.09.2019  07:23         7 324 008 mysqlrouter_keyring.exe
+20.09.2019  07:23         7 334 248 mysqlrouter_passwd.exe
+20.09.2019  07:23         6 241 648 mysqlrouter_plugin_info.exe
+20.09.2019  07:23         6 718 296 mysqlshow.exe
+20.09.2019  07:23         6 736 728 mysqlslap.exe
+20.09.2019  14:28             7 517 mysql_config.pl
+20.09.2019  07:23         6 283 112 mysql_config_editor.exe
+20.09.2019  07:23         6 717 304 mysql_secure_installation.exe
+20.09.2019  07:23         6 312 808 mysql_ssl_rsa_setup.exe
+20.09.2019  07:23         6 208 360 mysql_tzinfo_to_sql.exe
+20.09.2019  07:23         6 824 288 mysql_upgrade.exe
+20.09.2019  07:23         6 266 216 my_print_defaults.exe
+20.09.2019  07:23         6 997 328 perror.exe
+20.09.2019  07:24         6 228 320 zlib_decompress.exe
+              44 файлов    259 366 246 байт
+               2 папок  175 643 164 672 байт свободно
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>CAT example.sql
+"CAT" не является внутренней или внешней
+командой, исполняемой программой или пакетным файлом.
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p
+Enter password: **************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.18 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE sample;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> exit
+Bye
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u root -p sample < example.sql
+Enter password: **************
