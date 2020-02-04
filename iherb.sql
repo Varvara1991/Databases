@@ -43,7 +43,7 @@ updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 ) COMMENT = 'Список желаний покупателей'
 ;
 
-CREATE TABLE product_categories (
+CREATE TABLE categories (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR (255) NOT NULL COMMENT 'Название категории товаров',
 created_at DATETIME DEFAULT NOW() NOT NULL,
@@ -54,7 +54,7 @@ updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 CREATE TABLE product_types (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR (255) NOT NULL COMMENT 'Название подкатегории товаров',
-product_category_id INT UNSIGNED NOT NULL COMMENT 'id категории товаров',
+category_id INT UNSIGNED NOT NULL COMMENT 'id категории товаров',
 created_at DATETIME DEFAULT NOW() NOT NULL,
 updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 ) COMMENT = 'Каталог подкатегорий товаров'
@@ -113,16 +113,17 @@ updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 ) COMMENT = 'Заказы'
 ;
 
-CREATE TABLE orders_products (
+CREATE TABLE order_products (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 order_id INT UNSIGNED NOT NULL COMMENT 'id заказа',
-name VARCHAR (255) NOT NULL COMMENT 'Название товара в заказе',
+product_id INT UNSIGNED NOT NULL COMMENT 'id товара',
+quantity TINYINT UNSIGNED NOT NULL COMMENT 'Количество товара в заказе',
 created_at DATETIME DEFAULT NOW() NOT NULL,
 updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 ) COMMENT = 'Товары в заказах'
 ;
 
-CREATE TABLE bin (
+CREATE TABLE bins (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 user_id INT UNSIGNED NOT NULL COMMENT 'id владельца корзины',
 created_at DATETIME DEFAULT NOW() NOT NULL,
@@ -133,7 +134,8 @@ updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 CREATE TABLE bin_products (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 bin_id INT UNSIGNED NOT NULL COMMENT 'id корзины',
-name VARCHAR (255) NOT NULL COMMENT 'Название товара в корзине',
+product_id INT UNSIGNED NOT NULL COMMENT 'id товара',
+quantity TINYINT UNSIGNED NOT NULL COMMENT 'Количество товара в заказе',
 created_at DATETIME DEFAULT NOW() NOT NULL,
 updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 ) COMMENT = 'Содержимое корзин покупателей'
@@ -141,12 +143,17 @@ updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 
 CREATE TABLE users_credit_cards (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+user_id INT UNSIGNED NOT NULL COMMENT 'id владельца кредитной карты',
+card_type VARCHAR(100) NOT NULL COMMENT 'Название платежной системы',
+card_number INT UNSIGNED NOT NULL COMMENT 'Номер карты',
+expiration_date DATE NOT NULL COMMENT 'Дата окончания действия кредитной карты',
+card_holder_name VARCHAR(100) NOT NULL COMMENT 'Имя владельца карты',
 created_at DATETIME DEFAULT NOW() NOT NULL,
 updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 ) COMMENT = 'Данные о кредитных картах покупателей'
 ;
 
-CREATE TABLE country (
+CREATE TABLE countries (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 name VARCHAR(255) NOT NULL COMMENT 'Название страны',
 created_at DATETIME DEFAULT NOW() NOT NULL,
@@ -154,8 +161,9 @@ updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 ) COMMENT = 'Список стран'
 ;
 
-CREATE TABLE city (
+CREATE TABLE cities (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+country_id INT UNSIGNED NOT NULL COMMENT 'id страны',
 name VARCHAR(255) NOT NULL COMMENT 'Название города',
 created_at DATETIME DEFAULT NOW() NOT NULL,
 updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
@@ -173,7 +181,7 @@ updated_at DATETIME DEFAULT NOW() NOT NULL ON UPDATE NOW()
 ) COMMENT = 'Отзывы'
 ;
 
-CREATE TABLE reviews_likes (
+CREATE TABLE review_feed_back (
 id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 review_id INT UNSIGNED NOT NULL COMMENT 'id отзыва',
 user_id INT UNSIGNED NOT NULL COMMENT 'id покупателя, оценивающего отзыв',
