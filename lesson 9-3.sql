@@ -63,4 +63,3 @@ END//
 
 -- проверка
 SELECT FIBONACCI(10)//
-
